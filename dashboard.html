@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Login - FinTrack Pro</title>
+</head>
+
+<body>
+    <header class="h-[15vh] border-b border-gray-300 flex items-center justify-end px-10">
+        <nav class="flex h-[80%] items-center justify-end px-10 py-5 gap-10">
+            <div class="w-1 h-[80%] border-r border-gray-300"></div>
+            <h2 class="p-2">as</h2>
+            <button
+                class="border rounded-lg border-gray-300 px-4 py-2 flex justify-center items-center hover:bg-black hover:text-white"><i
+                    class="ri-logout-box-r-line"></i>Logout</button>
+        </nav>
+    </header>
+
+    <main>
+        <aside
+            class="h-[100vh] w-[16vw] border-r border-gray-300 flex flex-col justify-between p-5 fixed top-0 bg-white">
+            <div id="upper" class="flex flex-col gap-10 justify-start">
+                <div id="logo" class="flex items-center ">
+                    <img src="./image/logo.png" alt="logo" class="h-[5vh] w-[8vh]" />
+                    <div>
+                        <h3 class="text-xl font-bold ">FinTrack Pro</h3>
+                        <p class="text-sm text-gray-500 ">Enterprise Finance</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-start gap-5">
+                    <a href="./dashboard.html">
+                        <button
+                            class="px-4 py-2 bg-white border-none rounded-lg active:bg-blue-200 active:text-blue-600 flex gap-4 "><i
+                                class="ri-dashboard-line"></i>Dashboard</button>
+                    </a>
+
+                    <a href="./settings.html">
+                        <button
+                            class="px-4 py-2 bg-white border-none rounded-lg active:bg-blue-200 active:text-blue-600 flex gap-4 "><i
+                                class="ri-settings-3-fill"></i>Settings</button>
+                    </a>
+
+                </div>
+            </div>
+
+            <button class="px-4 py-2 bg-black text-white rounded-lg hover:bg-blue-600 flex gap-4 "><i
+                    class="ri-add-line"></i> Add Transaction</button>
+        </aside>
+
+        <section class="flex flex-col absolute right-0 w-[84vw] gap-4 p-8">
+            <div>
+                <h2 class="text-4xl font-bold ">Financial Overview</h2>
+                <p class="text-gray-500 ">Real-time tracking application</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Current Balance -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl shadow-md p-6 flex items-center justify-between hover:shadow-lg transition duration-300">
+                    <div>
+                        <i class="ri-bank-fill text-3xl text-blue-600"></i>
+                        <p class="text-gray-500 text-sm">Current Balance</p>
+                        <h2 id="currentBalance" class="text-2xl font-bold text-gray-800">$0.00</h2>
+                    </div>
+                </div>
+
+                <!-- Total Income -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl shadow-md p-6 flex items-center justify-between hover:shadow-lg transition duration-300">
+                    <div>
+                        <i class="ri-arrow-up-circle-fill text-3xl text-green-600"></i>
+                        <p class="text-gray-500 text-sm">Total Income</p>
+                        <h2 id="totalIncome" class="text-2xl font-bold text-green-600">$0.00</h2>
+                    </div>
+                </div>
+
+                <!-- Total Expense -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl shadow-md p-6 flex items-center justify-between hover:shadow-lg transition duration-300">
+                    <div>
+                        <i class="ri-arrow-down-circle-fill text-3xl text-red-600"></i>
+                        <p class="text-gray-500 text-sm">Total Expense</p>
+                        <h2 id="totalExpense" class="text-2xl font-bold text-red-600">$0.00</h2>
+                    </div>
+                </div>
+
+                <!-- Total Transactions -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl shadow-md p-6 flex items-center justify-between hover:shadow-lg transition duration-300">
+                    <div>
+                        <i class="ri-exchange-dollar-fill text-3xl text-purple-600"></i>
+                        <p class="text-gray-500 text-sm">Total Transactions</p>
+                        <h2 id="totalTransactions" class="text-2xl font-bold text-purple-600">0</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="">
+                <!-- Dashboard Bottom Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+
+                    <!-- Cash Flow Analysis -->
+                    <div class="lg:col-span-2 bg-white rounded-2xl shadow-md border border-gray-200 p-6">
+
+                        <h2 class="text-3xl font-bold mb-6">
+                            Cash Flow Analysis
+                        </h2>
+
+                        <div class="bg-gray-50 rounded-xl p-5">
+
+                            <canvas id="cashFlowChart" height="140"></canvas>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Preferences -->
+                    <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6">
+
+                        <h2 class="text-3xl font-bold mb-8">
+                            Preferences
+                        </h2>
+
+                        <!-- Dark Mode -->
+                        <div class="flex justify-between items-center mb-6">
+
+                            <span class="text-xl font-semibold">
+                                Dark Mode
+                            </span>
+
+                            <label class="relative inline-flex items-center cursor-pointer">
+
+                                <input type="checkbox" id="darkToggle" class="sr-only peer">
+
+                                <div class="w-12 h-7 bg-gray-300 rounded-full
+                    peer peer-checked:bg-indigo-600
+                    after:content-['']
+                    after:absolute
+                    after:top-1
+                    after:left-1
+                    after:w-5
+                    after:h-5
+                    after:bg-white
+                    after:rounded-full
+                    after:transition-all
+                    peer-checked:after:translate-x-5">
+                                </div>
+
+                            </label>
+
+                        </div>
+
+                        <hr class="mb-6">
+
+                        <!-- Reset Button -->
+                        <button id="resetData"
+                            class="w-full border border-red-300 text-red-600 rounded-lg py-3 font-semibold hover:bg-red-50 transition">
+
+                            <i class="ri-delete-bin-6-fill mr-2"></i>
+
+                            Reset All Data
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- All Transactions -->
+            <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 mt-8">
+
+                <!-- Heading -->
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                    All Transactions
+                </h2>
+
+                <!-- Search & Filter -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+
+                    <!-- Search Box -->
+                    <div class="relative">
+
+                        <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-500"></i>
+
+                        <input type="text" id="searchTransaction" placeholder="Search transactions..." class="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-100 border border-transparent
+                       focus:outline-none focus:ring-2 focus:ring-indigo-500
+                       focus:border-indigo-500">
+
+                    </div>
+
+                    <!-- Category Filter -->
+                    <select id="filterCategory" class="w-full px-4 py-3 rounded-xl bg-gray-100 border border-gray-300
+                   focus:outline-none focus:ring-2 focus:ring-indigo-500">
+
+                        <option value="all">All Types</option>
+                        <option value="Income">Income</option>
+                        <option value="Expense">Expense</option>
+
+                    </select>
+
+                </div>
+
+                <!-- Transactions Table -->
+                <div class="overflow-x-auto">
+
+                    <table class="w-full">
+
+                        <thead>
+
+                            <tr class="border-b text-left text-gray-600 uppercase text-sm">
+
+                                <th class="py-3 px-2">Date</th>
+
+                                <th class="py-3 px-2">Description</th>
+
+                                <th class="py-3 px-2">Category</th>
+
+                                <th class="py-3 px-2">Amount</th>
+
+                                <th class="py-3 px-2 text-center">Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="transactionTable">
+
+                            <!-- Sample Row -->
+
+                            <tr class="border-b hover:bg-gray-50">
+
+                                <td class="py-4 px-2">09 Jul 2026</td>
+
+                                <td class="py-4 px-2 font-medium">
+                                    Salary
+                                </td>
+
+                                <td class="py-4 px-2">
+
+                                    <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
+                                        Income
+                                    </span>
+
+                                </td>
+
+                                <td class="py-4 px-2 font-semibold text-green-600">
+                                    + $5,000
+                                </td>
+
+                                <td class="py-4 px-2 text-center space-x-2">
+
+                                    <button class="text-blue-600 hover:text-blue-800 text-xl">
+
+                                        <i class="ri-edit-box-line"></i>
+
+                                    </button>
+
+                                    <button class="text-red-600 hover:text-red-800 text-xl">
+
+                                        <i class="ri-delete-bin-6-line"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Transaction Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center">
+        <div class="bg-white w-[400px] p-6 rounded-xl">
+
+            <h2 class="text-xl font-bold mb-4">Add Transaction</h2>
+
+            <input id="desc" class="w-full mb-3 p-2 border rounded" placeholder="Description">
+
+            <input id="amount" type="number" class="w-full mb-3 p-2 border rounded" placeholder="Amount">
+
+            <select id="type" class="w-full mb-3 p-2 border rounded">
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+
+            <button id="saveBtn" class="w-full bg-blue-600 text-white p-2 rounded">
+                Save
+            </button>
+
+            <button id="closeModal" class="w-full mt-2 bg-gray-200 p-2 rounded">
+                Cancel
+            </button>
+
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

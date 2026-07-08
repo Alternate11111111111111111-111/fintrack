@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Login - FinTrack Pro</title>
+</head>
+
+<body>
+    <header class="h-[15vh] border-b border-gray-300 flex items-center justify-end px-10">
+        <nav class="flex h-[80%] items-center justify-end px-10 py-5 gap-10">
+            <div class="w-1 h-[80%] border-r border-gray-300"></div>
+            <h2 class="p-2">as</h2>
+            <button
+                class="border rounded-lg border-gray-300 px-4 py-2 flex justify-center items-center hover:bg-black hover:text-white"><i
+                    class="ri-logout-box-r-line"></i>Logout</button>
+        </nav>
+    </header>
+
+    <main>
+        <aside
+            class="h-[100vh] w-[16vw] border-r border-gray-300 flex flex-col justify-between p-5 fixed top-0 bg-white">
+            <div id="upper" class="flex flex-col gap-10 justify-start">
+                <div id="logo" class="flex items-center ">
+                    <img src="./image/logo.png" alt="logo" class="h-[5vh] w-[8vh]" />
+                    <div>
+                        <h3 class="text-xl font-bold ">FinTrack Pro</h3>
+                        <p class="text-sm text-gray-500 ">Enterprise Finance</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-start gap-5">
+                    <a href="./dashboard.html">
+                        <button
+                            class="px-4 py-2 bg-white border-none rounded-lg active:bg-blue-200 active:text-blue-600 flex gap-4 "><i
+                                class="ri-dashboard-line"></i>Dashboard</button>
+                    </a>
+
+                    <a href="./settings.html">
+                        <button
+                            class="px-4 py-2 bg-white border-none rounded-lg active:bg-blue-200 active:text-blue-600 flex gap-4 "><i
+                                class="ri-settings-3-fill"></i>Settings</button>
+                    </a>
+
+                </div>
+            </div>
+
+            <button class="px-4 py-2 bg-black text-white rounded-lg hover:bg-blue-600 flex gap-4 "><i
+                    class="ri-add-line"></i> Add Transaction</button>
+        </aside>
+
+      
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>
